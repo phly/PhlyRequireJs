@@ -43,3 +43,7 @@ echo $this->requirejs();
 The view helper also defines `prepend` and `prependAndCaptureCallback` methods;
 they work identically, but prepend the require to the start of the list.
 
+LICENSE
+-------
+
+BSD-3-Clause
