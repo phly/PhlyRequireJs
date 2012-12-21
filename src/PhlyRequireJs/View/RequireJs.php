@@ -80,4 +80,33 @@ class RequireJs extends Container
         $this->captureNameOrNames = null;
         $this->captureType        = null;
     }
+
+    public function toString()
+    {
+        $script = array();
+        foreach ($this as $require) {
+            if (!$require instanceof Requirement) {
+                continue;
+            }
+            $name = $this->formatName($require->getName());
+            $script[] = sprintf('require([%s], %s);', $name, $require->getCallback());
+        }
+        $script = implode("\n", $script);
+        return sprintf("<script>\n%s\n</script>", $script);
+    }
+
+    protected function formatName($name)
+    {
+        if (is_string($name)) {
+            return sprintf('"%s"', $name);
+        }
+        $names = array();
+        foreach ($name as $module) {
+            if (!is_string($module)) {
+                continue;
+            }
+            $names[] = sprintf('"%s"', $module);
+        }
+        return implode(', ', $names);
+    }
 }

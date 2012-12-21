@@ -126,6 +126,16 @@ function(bar){
 
     public function testRenderingCreatesJavaScriptWithRequireContentsInOrder()
     {
-        $this->markTestIncomplete();
+        $this->requirejs->append('foo/bar');
+        $this->requirejs->prependAndCaptureCallback('bar/baz'); ?>
+function(bar){
+    bar.baz();
+}
+<?php
+        $this->requirejs->stopCapture();
+        $this->requirejs->append('baz/bat', 'function (bat) { bat.d.ball(); }');
+
+        $string = $this->requirejs->toString();
+        $this->assertRegexp("#\<script\>\n\s*require\(\s*\[\s*\"bar/baz\"\s*\], function\(bar\)\s*\{\s*bar\.baz\(\);\s*\}\s*\);\n\s*require\(\s*\[\s*\"foo/bar\"\s*\], function \(\) \{\}\s*\);\n\s*require\(\s*\[\s*\"baz/bat\"\s*\], function \(bat\) \{ bat\.d\.ball\(\); \}\s*\);\n\s*\</script\>#s", $string);
     }
 }
