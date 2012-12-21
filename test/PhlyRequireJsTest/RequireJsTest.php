@@ -16,7 +16,15 @@ class RequestJsTest extends TestCase
 
     public function testCanAddUsingSingleStringArgumentOnly()
     {
-        $this->markTestIncomplete();
+        $this->requirejs->append('foo/bar');
+        $this->assertEquals(1, count($this->requirejs));
+        $require = false;
+        foreach ($this->requirejs as $require) {
+            // iterating to get first item
+            break;
+        }
+        $this->assertInstanceOf('PhlyRequireJs\View\Requirement', $require);
+        $this->assertEquals('foo/bar', $require->getName());
     }
 
     public function testCanAddUsingArrayArgumentOnly()
