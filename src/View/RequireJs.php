@@ -1,4 +1,8 @@
 <?php
+/**
+ * @license   http://opensource.org/licenses/BSD-2-Clause BSD-2-Clause
+ * @copyright Copyright (c) 2014 Matthew Weier O'Phinney
+ */
 
 namespace PhlyRequireJs\View;
 
@@ -7,11 +11,34 @@ use Zend\View\Helper\Placeholder\Container\AbstractStandalone as Container;
 
 class RequireJs extends Container
 {
+    /**
+     * Whether or not a capture has already been started
+     *
+     * @var bool
+     */
     protected $captureStarted = false;
 
+    /**
+     * Name or names to capture
+     *
+     * @var string|array
+     */
     protected $captureNameOrNames;
+
+    /**
+     * Type of capture (prepend, append)
+     *
+     * @var string
+     */
     protected $captureType;
 
+    /**
+     * Append a requirement
+     *
+     * @param string|array $nameOrNames
+     * @param string $callback JavaScript callback for the requirement
+     * @return self
+     */
     public function append($nameOrNames, $callback = null)
     {
         $requirement = new Requirement($nameOrNames, $callback);
@@ -19,6 +46,13 @@ class RequireJs extends Container
         return $this;
     }
 
+    /**
+     * Prepend a requirement
+     *
+     * @param string|array $nameOrNames
+     * @param string $callback JavaScript callback for the requirement
+     * @return self
+     */
     public function prepend($nameOrNames, $callback = null)
     {
         $requirement = new Requirement($nameOrNames, $callback);
@@ -26,6 +60,11 @@ class RequireJs extends Container
         return $this;
     }
 
+    /**
+     * Begin capturing the JavaScript requirement callback to append later
+     *
+     * @param string|array $nameOrNames
+     */
     public function appendAndCaptureCallback($nameOrNames)
     {
         if ($this->captureStarted) {
@@ -38,6 +77,11 @@ class RequireJs extends Container
         $this->captureStarted = true;
     }
 
+    /**
+     * Begin capturing the JavaScript requirement callback to prepend later
+     *
+     * @param string|array $nameOrNames
+     */
     public function prependAndCaptureCallback($nameOrNames)
     {
         if ($this->captureStarted) {
@@ -50,6 +94,9 @@ class RequireJs extends Container
         $this->captureStarted = true;
     }
 
+    /**
+     * Stop capturing
+     */
     public function stopCapture()
     {
         if (!$this->captureStarted) {
@@ -81,6 +128,11 @@ class RequireJs extends Container
         $this->captureType        = null;
     }
 
+    /**
+     * Cast to string
+     *
+     * @return string
+     */
     public function toString()
     {
         $script = array();
@@ -95,6 +147,12 @@ class RequireJs extends Container
         return sprintf("<script>\n%s\n</script>", $script);
     }
 
+    /**
+     * Format the requirement name
+     *
+     * @param string|array $name
+     * @return string
+     */
     protected function formatName($name)
     {
         if (is_string($name)) {

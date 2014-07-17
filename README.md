@@ -46,4 +46,4 @@ they work identically, but prepend the require to the start of the list.
 LICENSE
 -------
 
-BSD-3-Clause
+BSD-2-Clause
