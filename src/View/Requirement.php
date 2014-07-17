@@ -48,8 +48,8 @@ class Requirement
 
     /**
      * Set the requirement name
-     * 
-     * @param string|array|Traversable $name 
+     *
+     * @param string|array|Traversable $name
      */
     protected function setName($name)
     {
@@ -71,8 +71,8 @@ class Requirement
 
     /**
      * Set the JavaScript callback to execute with the requirement
-     * 
-     * @param string $callback 
+     *
+     * @param string $callback
      */
     protected function setCallback($callback)
     {

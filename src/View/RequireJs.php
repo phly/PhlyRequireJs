@@ -13,29 +13,29 @@ class RequireJs extends Container
 {
     /**
      * Whether or not a capture has already been started
-     * 
+     *
      * @var bool
      */
     protected $captureStarted = false;
 
     /**
      * Name or names to capture
-     * 
+     *
      * @var string|array
      */
     protected $captureNameOrNames;
 
     /**
      * Type of capture (prepend, append)
-     * 
+     *
      * @var string
      */
     protected $captureType;
 
     /**
      * Append a requirement
-     * 
-     * @param string|array $nameOrNames 
+     *
+     * @param string|array $nameOrNames
      * @param string $callback JavaScript callback for the requirement
      * @return self
      */
@@ -48,8 +48,8 @@ class RequireJs extends Container
 
     /**
      * Prepend a requirement
-     * 
-     * @param string|array $nameOrNames 
+     *
+     * @param string|array $nameOrNames
      * @param string $callback JavaScript callback for the requirement
      * @return self
      */
@@ -62,8 +62,8 @@ class RequireJs extends Container
 
     /**
      * Begin capturing the JavaScript requirement callback to append later
-     * 
-     * @param string|array $nameOrNames 
+     *
+     * @param string|array $nameOrNames
      */
     public function appendAndCaptureCallback($nameOrNames)
     {
@@ -79,8 +79,8 @@ class RequireJs extends Container
 
     /**
      * Begin capturing the JavaScript requirement callback to prepend later
-     * 
-     * @param string|array $nameOrNames 
+     *
+     * @param string|array $nameOrNames
      */
     public function prependAndCaptureCallback($nameOrNames)
     {
@@ -130,7 +130,7 @@ class RequireJs extends Container
 
     /**
      * Cast to string
-     * 
+     *
      * @return string
      */
     public function toString()
@@ -149,8 +149,8 @@ class RequireJs extends Container
 
     /**
      * Format the requirement name
-     * 
-     * @param string|array $name 
+     *
+     * @param string|array $name
      * @return string
      */
     protected function formatName($name)
