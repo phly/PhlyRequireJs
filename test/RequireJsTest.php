@@ -1,17 +1,19 @@
 <?php
+/**
+ * @license   http://opensource.org/licenses/BSD-2-Clause BSD-2-Clause
+ * @copyright Copyright (c) 2014 Matthew Weier O'Phinney
+ */
 
 namespace PhlyRequireJsTest;
 
 use ArrayObject;
 use PhlyRequireJs\View\RequireJs;
 use PHPUnit_Framework_TestCase as TestCase;
-use Zend\View\Helper\Placeholder\Registry;
 
 class RequestJsTest extends TestCase
 {
     public function setUp()
     {
-        Registry::unsetRegistry();
         $this->requirejs = new RequireJs();
     }
 
